@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">User Generator</string>
+    <string name="no_internet">Нет соединения</string>
+    <string name="check_internet_connection">Проверьте соединение с сетью \nи попробуйте еще раз</string>
+    <string name="upload_new_users">Получить пользователей</string>
+</resources>
