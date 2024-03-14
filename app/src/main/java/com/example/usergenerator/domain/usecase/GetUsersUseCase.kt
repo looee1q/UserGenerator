@@ -1,9 +1,9 @@
-package com.example.usergenerator.domain.network
+package com.example.usergenerator.domain.usecase
 
 import com.example.usergenerator.domain.models.SearchResult
 import kotlinx.coroutines.flow.Flow
 
-interface UsersNetworkUseCase {
+interface GetUsersUseCase {
 
     fun getRandomUsers(): Flow<SearchResult>
 }

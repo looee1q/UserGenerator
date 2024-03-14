@@ -7,13 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.usergenerator.domain.models.SearchResult
 import com.example.usergenerator.domain.models.UserBriefInfo
-import com.example.usergenerator.domain.network.UsersNetworkUseCase
+import com.example.usergenerator.domain.usecase.GetUsersUseCase
 import com.example.usergenerator.presentation.state.State
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UsersViewModel(
-    private val usersNetworkUseCase: UsersNetworkUseCase
+    private val usersUseCase: GetUsersUseCase
 ) : ViewModel() {
 
     private val _stateLiveData = MutableLiveData<State<List<UserBriefInfo>>>()
@@ -22,7 +22,7 @@ class UsersViewModel(
     fun getUsers() {
         _stateLiveData.postValue(State.Loading())
         viewModelScope.launch(Dispatchers.IO) {
-            usersNetworkUseCase.getRandomUsers().collect {
+            usersUseCase.getRandomUsers().collect {
                 when (it) {
                     SearchResult.NoInternet -> _stateLiveData.postValue(State.NoInternet())
                     SearchResult.Error -> _stateLiveData.postValue(State.Error())

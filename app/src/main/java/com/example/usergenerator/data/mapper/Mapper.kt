@@ -1,9 +1,9 @@
-package com.example.usergenerator.data.convertor
+package com.example.usergenerator.data.mapper
 
 import com.example.usergenerator.data.dto.UserDto
 import com.example.usergenerator.domain.models.UserBriefInfo
 
-object Convertor {
+class Mapper {
 
     fun fromUserDtoToUserBriefInfo(userDto: UserDto): UserBriefInfo {
         return UserBriefInfo(

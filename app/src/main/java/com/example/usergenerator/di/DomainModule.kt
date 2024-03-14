@@ -1,12 +1,12 @@
 package com.example.usergenerator.di
 
-import com.example.usergenerator.domain.network.UsersNetworkUseCase
-import com.example.usergenerator.domain.network.UsersNetworkUseCaseImpl
+import com.example.usergenerator.domain.usecase.GetUsersUseCase
+import com.example.usergenerator.domain.usecase.GetUsersUseCaseImpl
 import org.koin.dsl.module
 
 val domainModule = module {
 
-    factory<UsersNetworkUseCase> {
-        UsersNetworkUseCaseImpl(usersNetworkRepository = get())
+    factory<GetUsersUseCase> {
+        GetUsersUseCaseImpl(usersRepository = get())
     }
 }
