@@ -18,8 +18,6 @@ data class UserDetails(
     val age: String,
     val phone: String,
     val cellPhone: String,
-    val largePicture: String,
-    val mediumPicture: String,
-    val smallPicture: String,
+    val picture: String,
     val nation: String
 )

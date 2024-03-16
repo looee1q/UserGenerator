@@ -8,5 +8,9 @@ data class UserBriefInfo(
     val city: String,
     val state: String,
     val country: String,
-    val smallPicture: String,
-)
+    val picture: String,
+) {
+    fun getFullName() = "$firstName $lastName"
+
+    fun getAddress() = "$country, $state, $city, $street, $streetNumber"
+}

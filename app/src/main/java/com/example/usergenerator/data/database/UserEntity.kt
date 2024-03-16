@@ -32,11 +32,6 @@ data class UserEntity(
     val phone: String,
     @ColumnInfo(name = "cell_phone")
     val cellPhone: String,
-    @ColumnInfo(name = "large_picture")
-    val largePicture: String,
-    @ColumnInfo(name = "medium_picture")
-    val mediumPicture: String,
-    @ColumnInfo(name = "small_picture")
-    val smallPicture: String,
+    val picture: String,
     val nation: String
 )

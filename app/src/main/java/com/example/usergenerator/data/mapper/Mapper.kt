@@ -26,9 +26,7 @@ class Mapper {
             age = userDto.dob.age,
             phone = userDto.phone,
             cellPhone = userDto.cell,
-            largePicture = userDto.picture.large,
-            mediumPicture = userDto.picture.medium,
-            smallPicture = userDto.picture.thumbnail,
+            picture = userDto.picture.large,
             nation = userDto.nat
         )
     }
@@ -39,10 +37,10 @@ class Mapper {
             lastName = userEntity.lastName,
             streetNumber = userEntity.streetNumber,
             street = userEntity.street,
-            city = userEntity.username,
+            city = userEntity.city,
             state = userEntity.state,
             country = userEntity.country,
-            smallPicture = userEntity.smallPicture,
+            picture = userEntity.picture,
         )
     }
 
@@ -65,9 +63,7 @@ class Mapper {
             age = userEntity.age,
             phone = userEntity.phone,
             cellPhone = userEntity.cellPhone,
-            largePicture = userEntity.largePicture,
-            mediumPicture = userEntity.mediumPicture,
-            smallPicture = userEntity.smallPicture,
+            picture = userEntity.picture,
             nation = userEntity.nation
         )
     }

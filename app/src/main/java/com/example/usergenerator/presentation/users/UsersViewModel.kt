@@ -19,6 +19,10 @@ class UsersViewModel(
     private val _stateLiveData = MutableLiveData<State<List<UserBriefInfo>>>()
     val stateLiveData: LiveData<State<List<UserBriefInfo>>> get() = _stateLiveData
 
+    init {
+        getUsers()
+    }
+
     fun getUsers() {
         _stateLiveData.postValue(State.Loading())
         viewModelScope.launch(Dispatchers.IO) {
@@ -28,7 +32,7 @@ class UsersViewModel(
                     SearchResult.Error -> _stateLiveData.postValue(State.Error())
                     is SearchResult.Success -> {
                         if (it.data.isEmpty()) {
-                            _stateLiveData.postValue(State.Empty())
+                            _stateLiveData.postValue(State.Error())
                         } else {
                             _stateLiveData.postValue(State.Content(it.data))
                             Log.d("UsersViewModel", "Users2 are ${it.data.map { it.firstName + it.lastName }}}")

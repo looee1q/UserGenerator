@@ -22,6 +22,7 @@
         android:layout_marginStart="@dimen/_8dp"
         android:maxLines="1"
         android:ellipsize="end"
+        android:gravity="left"
         tools:text="Севостьянов Валерий Андреевич очень большой молод"
         android:textSize="@dimen/_16sp"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,6 +44,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/photo"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

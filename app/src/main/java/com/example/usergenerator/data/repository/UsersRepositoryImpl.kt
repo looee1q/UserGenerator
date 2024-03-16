@@ -41,6 +41,6 @@ class UsersRepositoryImpl(
     }
 
     companion object {
-        const val USERS_QUANTITY = 2
+        const val USERS_QUANTITY = 20
     }
 }
