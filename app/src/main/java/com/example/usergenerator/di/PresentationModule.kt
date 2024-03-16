@@ -7,6 +7,9 @@ import org.koin.dsl.module
 val presentationModule = module {
 
     viewModel<UsersViewModel> {
-        UsersViewModel(usersUseCase = get())
+        UsersViewModel(
+            getUsersFromNetworkUseCase = get(),
+            getUsersFromDatabaseUseCase = get()
+        )
     }
 }

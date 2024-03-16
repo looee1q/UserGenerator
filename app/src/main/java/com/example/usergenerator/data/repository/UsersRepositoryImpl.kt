@@ -4,8 +4,10 @@ import com.example.usergenerator.data.SearchResultData
 import com.example.usergenerator.data.database.AppDatabase
 import com.example.usergenerator.data.mapper.Mapper
 import com.example.usergenerator.data.network.NetworkClient
+import com.example.usergenerator.domain.models.DatabaseResult
 import com.example.usergenerator.domain.models.SearchResult
 import com.example.usergenerator.domain.models.UserBriefInfo
+import com.example.usergenerator.domain.models.UserDetails
 import com.example.usergenerator.domain.repository.UsersRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -16,7 +18,7 @@ class UsersRepositoryImpl(
     private val appDatabase: AppDatabase
 ) : UsersRepository {
 
-    override fun getRandomUsers(): Flow<SearchResult> = flow {
+    override fun getUsersFromNetwork(): Flow<SearchResult> = flow {
         networkClient.getUsersFromNetwork(USERS_QUANTITY).collect {
             when (it) {
                 is SearchResultData.Success -> {
@@ -38,6 +40,18 @@ class UsersRepositoryImpl(
                 }
             }
         }
+    }
+
+    override fun getUsersFromDatabase(): Flow<DatabaseResult<List<UserBriefInfo>>> = flow {
+        val usersFromDatabase = appDatabase.getUsersDao().getAllUsers()
+        val usersWithBriefInfo = usersFromDatabase.map {
+            mapper.fromUserEntityToUserBriefInfo(it)
+        }
+        emit(DatabaseResult.Success(usersWithBriefInfo))
+    }
+
+    override fun getUserDetailsById(userId: Int): Flow<UserDetails> = flow {
+
     }
 
     companion object {

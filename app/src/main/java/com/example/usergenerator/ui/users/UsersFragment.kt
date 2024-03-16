@@ -1,12 +1,12 @@
 package com.example.usergenerator.ui.users
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.usergenerator.R
 import com.example.usergenerator.databinding.FragmentUsersBinding
@@ -36,12 +36,14 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = UsersAdapter {  }
+        adapter = UsersAdapter {
+            findNavController().navigate(R.id.action_usersFragment_to_userDetailsFragment)
+        }
         binding.usersRecyclerView.adapter = adapter
         binding.usersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         binding.uploadUsersButton.setOnClickListener {
-            viewModel.getUsers()
+            viewModel.getUsersFromNetwork()
         }
 
         viewModel.stateLiveData.observe(viewLifecycleOwner) {
@@ -57,9 +59,11 @@ class UsersFragment : Fragment() {
     private fun render(state: State<List<UserBriefInfo>>) {
         when(state) {
             is State.Content -> renderContent(state)
-            is State.Error -> renderError()
+            is State.ErrorNetwork -> renderErrorNetwork()
+            is State.ErrorDatabase -> renderErrorDatabase()
             is State.Loading -> renderLoading()
             is State.NoInternet -> renderNoInternet()
+            is State.FirstStart -> renderEmpty()
         }
     }
 
@@ -76,13 +80,32 @@ class UsersFragment : Fragment() {
         binding.progressBar.isVisible = true
     }
 
-    private fun renderError() {
+    private fun renderEmpty() {
+        binding.usersRecyclerView.isVisible = false
+        binding.errorHolder.isVisible = true
+        binding.progressBar.isVisible = false
+        binding.imageError.setImageResource(R.drawable.png_greetings)
+        binding.messageError.text = resources.getString(R.string.greetings)
+        binding.messageErrorAnnotation.isVisible = false
+    }
+
+    private fun renderErrorNetwork() {
         binding.usersRecyclerView.isVisible = false
         binding.errorHolder.isVisible = true
         binding.progressBar.isVisible = false
         binding.imageError.setImageResource(R.drawable.png_error)
         binding.messageError.text = resources.getString(R.string.server_error)
-        binding.checkInternetConnection.isVisible = false
+        binding.messageErrorAnnotation.isVisible = false
+    }
+
+    private fun renderErrorDatabase() {
+        binding.usersRecyclerView.isVisible = false
+        binding.errorHolder.isVisible = true
+        binding.progressBar.isVisible = false
+        binding.imageError.setImageResource(R.drawable.png_error)
+        binding.messageError.text = resources.getString(R.string.database_error)
+        binding.messageErrorAnnotation.isVisible = true
+        binding.messageErrorAnnotation.text = resources.getString(R.string.upload_new_users)
     }
 
     private fun renderNoInternet() {
@@ -91,6 +114,7 @@ class UsersFragment : Fragment() {
         binding.progressBar.isVisible = false
         binding.imageError.setImageResource(R.drawable.png_no_internet)
         binding.messageError.text = resources.getString(R.string.no_internet)
-        binding.checkInternetConnection.isVisible = true
+        binding.messageErrorAnnotation.isVisible = true
+        binding.messageErrorAnnotation.text = resources.getString(R.string.check_internet_connection)
     }
 }

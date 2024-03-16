@@ -2,6 +2,9 @@
     <string name="app_name">User Generator</string>
     <string name="no_internet">Нет соединения</string>
     <string name="server_error">Ошибка сервера</string>
+    <string name="database_error">Ошибка получения данных</string>
     <string name="check_internet_connection">Проверьте соединение с сетью \nи попробуйте еще раз</string>
+    <string name="clear_cache">Попробуйте очистить данные приложения</string>
     <string name="upload_new_users">Получить пользователей</string>
+    <string name="greetings">Добро пожаловать в Приложение!</string>
 </resources>

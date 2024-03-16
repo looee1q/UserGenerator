@@ -3,7 +3,7 @@ package com.example.usergenerator.domain.usecase
 import com.example.usergenerator.domain.models.SearchResult
 import kotlinx.coroutines.flow.Flow
 
-interface GetUsersUseCase {
+interface GetUsersFromNetworkUseCase {
 
-    fun getRandomUsers(): Flow<SearchResult>
+    operator fun invoke(): Flow<SearchResult>
 }

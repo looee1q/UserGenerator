@@ -4,11 +4,11 @@ import com.example.usergenerator.domain.models.SearchResult
 import com.example.usergenerator.domain.repository.UsersRepository
 import kotlinx.coroutines.flow.Flow
 
-class GetUsersUseCaseImpl(
+class GetUsersFromNetworkUseCaseImpl(
     private val usersRepository: UsersRepository
-) : GetUsersUseCase {
+) : GetUsersFromNetworkUseCase {
 
-    override fun getRandomUsers(): Flow<SearchResult> {
-        return usersRepository.getRandomUsers()
+    override operator fun invoke(): Flow<SearchResult> {
+        return usersRepository.getUsersFromNetwork()
     }
 }

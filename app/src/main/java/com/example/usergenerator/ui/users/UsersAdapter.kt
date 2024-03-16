@@ -7,7 +7,7 @@ import com.example.usergenerator.databinding.ItemUserBinding
 import com.example.usergenerator.domain.models.UserBriefInfo
 
 class UsersAdapter(
-    onUserClickListener: (UserBriefInfo) -> Unit
+    private val onUserClickListener: (UserBriefInfo) -> Unit
 ) : Adapter<UsersViewHolder>() {
 
     private val users = mutableListOf<UserBriefInfo>()
@@ -22,6 +22,9 @@ class UsersAdapter(
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.bind(users[position])
+        holder.itemView.setOnClickListener {
+            onUserClickListener.invoke(users[position])
+        }
     }
 
     fun setUsersList(newUserList: List<UserBriefInfo>) {
