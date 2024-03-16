@@ -31,7 +31,7 @@ class UsersViewModel(
                             _stateLiveData.postValue(State.Empty())
                         } else {
                             _stateLiveData.postValue(State.Content(it.data))
-                            Log.d("UsersViewModel", "Users2 are ${it.data}")
+                            Log.d("UsersViewModel", "Users2 are ${it.data.map { it.firstName + it.lastName }}}")
                         }
                     }
                 }

@@ -2,14 +2,14 @@ package com.example.usergenerator.data.network
 
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import com.example.usergenerator.domain.models.SearchResult
+import com.example.usergenerator.data.SearchResultData
 import kotlinx.coroutines.flow.Flow
 
 interface NetworkClient {
 
     val connectivityManager: ConnectivityManager
 
-    fun getUsers(usersQuantity: Int): Flow<SearchResult>
+    fun getUsersFromNetwork(usersQuantity: Int): Flow<SearchResultData>
 
     fun isConnected(): Boolean {
 

@@ -2,6 +2,8 @@ package com.example.usergenerator.di
 
 import android.content.Context
 import android.net.ConnectivityManager
+import androidx.room.Room
+import com.example.usergenerator.data.database.AppDatabase
 import com.example.usergenerator.data.mapper.Mapper
 import com.example.usergenerator.data.network.NetworkClient
 import com.example.usergenerator.data.network.RetrofitClient
@@ -24,12 +26,20 @@ val dataModule = module {
     }
 
     single {
+        Room.databaseBuilder(
+            androidContext(), AppDatabase::class.java, "users_database.db"
+        ).build()
+    }
+
+    single {
         Mapper()
     }
 
     single<UsersRepository> {
         UsersRepositoryImpl(
-            networkClient = get()
+            mapper = get(),
+            networkClient = get(),
+            appDatabase = get()
         )
     }
 }

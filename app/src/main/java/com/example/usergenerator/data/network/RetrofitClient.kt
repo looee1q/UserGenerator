@@ -1,9 +1,10 @@
 package com.example.usergenerator.data.network
 
 import android.net.ConnectivityManager
+import android.util.Log
+import com.example.usergenerator.data.SearchResultData
 import com.example.usergenerator.data.mapper.Mapper
 import com.example.usergenerator.data.repository.UsersRepositoryImpl
-import com.example.usergenerator.domain.models.SearchResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Retrofit
@@ -25,19 +26,19 @@ class RetrofitClient(
         retrofit.create(RandomUserApi::class.java)
     }
 
-    override fun getUsers(usersQuantity: Int): Flow<SearchResult>  = flow {
+    override fun getUsersFromNetwork(usersQuantity: Int): Flow<SearchResultData>  = flow {
         if (!isConnected()) {
-            emit(SearchResult.NoInternet)
+            emit(SearchResultData.NoInternet)
         } else {
-            val response = api.getUsers(UsersRepositoryImpl.USERS_QUANTITY)
+            val response = api.getUsers(usersQuantity)
             if (response.isSuccessful) {
-                val usersWithBriefInfo = response.body()?.results?.map {
-                    mapper.fromUserDtoToUserBriefInfo(it)
+                val users = response.body()?.results?.map {
+                    mapper.fromUserDtoToUserEntity(it)
                 }.orEmpty()
-
-                emit(SearchResult.Success(usersWithBriefInfo))
+                Log.d("RetrofitClient", "Users1 ${users.map { it.firstName + it.lastName }}")
+                emit(SearchResultData.Success(users))
             } else {
-                emit(SearchResult.Error)
+                emit(SearchResultData.Error)
             }
         }
     }
