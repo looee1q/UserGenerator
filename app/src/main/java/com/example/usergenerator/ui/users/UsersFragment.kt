@@ -13,6 +13,7 @@ import com.example.usergenerator.databinding.FragmentUsersBinding
 import com.example.usergenerator.domain.models.UserBriefInfo
 import com.example.usergenerator.presentation.state.State
 import com.example.usergenerator.presentation.users.UsersViewModel
+import com.example.usergenerator.ui.userdetails.UserDetailsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UsersFragment : Fragment() {
@@ -37,7 +38,10 @@ class UsersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = UsersAdapter {
-            findNavController().navigate(R.id.action_usersFragment_to_userDetailsFragment)
+            findNavController().navigate(
+                R.id.action_usersFragment_to_userDetailsFragment,
+                UserDetailsFragment.createArgs(it.id)
+            )
         }
         binding.usersRecyclerView.adapter = adapter
         binding.usersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -105,7 +109,7 @@ class UsersFragment : Fragment() {
         binding.imageError.setImageResource(R.drawable.png_error)
         binding.messageError.text = resources.getString(R.string.database_error)
         binding.messageErrorAnnotation.isVisible = true
-        binding.messageErrorAnnotation.text = resources.getString(R.string.upload_new_users)
+        binding.messageErrorAnnotation.text = resources.getString(R.string.clear_cache)
     }
 
     private fun renderNoInternet() {

@@ -1,5 +1,7 @@
 package com.example.usergenerator.di
 
+import com.example.usergenerator.domain.usecase.GetUserDetailsByIdUseCase
+import com.example.usergenerator.domain.usecase.GetUserDetailsByIdUseCaseImpl
 import com.example.usergenerator.domain.usecase.GetUsersFromDatabaseUseCase
 import com.example.usergenerator.domain.usecase.GetUsersFromDatabaseUseCaseImpl
 import com.example.usergenerator.domain.usecase.GetUsersFromNetworkUseCase
@@ -14,5 +16,9 @@ val domainModule = module {
 
     factory<GetUsersFromDatabaseUseCase> {
         GetUsersFromDatabaseUseCaseImpl(usersRepository = get())
+    }
+
+    factory<GetUserDetailsByIdUseCase> {
+        GetUserDetailsByIdUseCaseImpl(usersRepository = get())
     }
 }

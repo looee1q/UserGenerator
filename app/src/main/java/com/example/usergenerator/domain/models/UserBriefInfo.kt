@@ -1,6 +1,7 @@
 package com.example.usergenerator.domain.models
 
 data class UserBriefInfo(
+    val id: Int,
     val firstName: String,
     val lastName: String,
     val streetNumber: String,

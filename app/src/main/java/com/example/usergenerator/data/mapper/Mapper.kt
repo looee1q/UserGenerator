@@ -33,6 +33,7 @@ class Mapper {
 
     fun fromUserEntityToUserBriefInfo(userEntity: UserEntity): UserBriefInfo {
         return UserBriefInfo(
+            id = userEntity.id,
             firstName = userEntity.firstName,
             lastName = userEntity.lastName,
             streetNumber = userEntity.streetNumber,
@@ -46,6 +47,7 @@ class Mapper {
 
     fun fromUserEntityToUserDetails(userEntity: UserEntity): UserDetails {
         return UserDetails(
+            id = userEntity.id,
             gender = userEntity.gender,
             title = userEntity.title,
             firstName = userEntity.firstName,

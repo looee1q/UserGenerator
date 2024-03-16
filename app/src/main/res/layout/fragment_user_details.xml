@@ -1,9 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragmentUserDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.usergenerator.ui.userdetails.UserDetailsFragment">
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="@dimen/_48dp"
+        android:layout_height="@dimen/_48dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/userDetailsHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_details"
+        android:textSize="@dimen/_22sp"
+        app:layout_constraintStart_toEndOf="@id/backButton"
+        app:layout_constraintTop_toTopOf="@id/backButton"
+        app:layout_constraintBottom_toBottomOf="@id/backButton" />
+
+    <ImageView
+        android:id="@+id/userPhoto"
+        android:layout_width="@dimen/_80dp"
+        android:layout_height="@dimen/_80dp"
+        android:layout_marginTop="@dimen/_16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userDetailsHeader" />
+
+    <TextView
+        android:id="@+id/fullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16dp"
+        tools:text="Севостьянов Валерий Андреевич"
+        android:textSize="@dimen/_18sp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/userPhoto" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Username: @looee"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/fullName" />
+
+    <TextView
+        android:id="@+id/dateOfBirthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Год рождения: 13.06.1995"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/userName" />
+
+    <TextView
+        android:id="@+id/age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Возраст: 28 лет"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/dateOfBirthday" />
+
+    <TextView
+        android:id="@+id/nation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Русский"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/age" />
+
+    <TextView
+        android:id="@+id/addressHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Место жительства"
+        android:textSize="@dimen/_18sp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/nation" />
+
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Страна: Россия"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/addressHeader" />
+
+    <TextView
+        android:id="@+id/region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Область: Архангельская"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/country" />
+
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Город: Архангельск"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/region" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Адресс: ул. Северодвинская, д. 159"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/city" />
+
+    <TextView
+        android:id="@+id/contactInfoHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Контактная информация"
+        android:textSize="@dimen/_18sp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/address" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="email: valera.sevostyanov@yandex.ru"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/contactInfoHeader" />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="телефон: 8 800 555 35 35"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/email" />
+
+    <TextView
+        android:id="@+id/cellPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="моб. телефон: +7 921 03 00 589"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
+        app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
+        app:layout_constraintTop_toBottomOf="@id/phone" />
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left16dpBoundary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/_16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right16dpBoundary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/_16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

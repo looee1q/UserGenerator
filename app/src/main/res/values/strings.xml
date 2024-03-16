@@ -7,4 +7,5 @@
     <string name="clear_cache">Попробуйте очистить данные приложения</string>
     <string name="upload_new_users">Получить пользователей</string>
     <string name="greetings">Добро пожаловать в Приложение!</string>
+    <string name="user_details">Информация о пользователе</string>
 </resources>

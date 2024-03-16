@@ -50,8 +50,10 @@ class UsersRepositoryImpl(
         emit(DatabaseResult.Success(usersWithBriefInfo))
     }
 
-    override fun getUserDetailsById(userId: Int): Flow<UserDetails> = flow {
-
+    override fun getUserDetailsById(userId: Int): Flow<DatabaseResult<UserDetails>> = flow {
+        val userEntity = appDatabase.getUsersDao().getUserById(userId)
+        val userDetails = mapper.fromUserEntityToUserDetails(userEntity)
+        emit(DatabaseResult.Success(userDetails))
     }
 
     companion object {

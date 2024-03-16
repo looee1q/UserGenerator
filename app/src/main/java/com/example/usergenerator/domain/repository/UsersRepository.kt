@@ -12,5 +12,5 @@ interface UsersRepository {
 
     fun getUsersFromDatabase(): Flow<DatabaseResult<List<UserBriefInfo>>>
 
-    fun getUserDetailsById(userId: Int): Flow<UserDetails>
+    fun getUserDetailsById(userId: Int): Flow<DatabaseResult<UserDetails>>
 }
