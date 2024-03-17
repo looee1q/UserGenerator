@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:text="@string/user_details"
         android:textSize="@dimen/_22sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/backButton"
         app:layout_constraintTop_toTopOf="@id/backButton"
         app:layout_constraintBottom_toBottomOf="@id/backButton" />
@@ -36,6 +37,7 @@
         app:layout_constraintTop_toBottomOf="@id/userDetailsHeader" />
 
     <ScrollView
+        android:id="@+id/scrollViewWithUserDetails"
         android:layout_width="@dimen/_0dp"
         android:layout_height="@dimen/_0dp"
         android:layout_marginTop="@dimen/_16dp"
@@ -55,6 +57,7 @@
                 android:layout_marginBottom="@dimen/_12dp"
                 tools:text="Севостьянов Валерий Андреевич"
                 android:textSize="@dimen/_18sp"
+                android:textStyle="bold"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
                 app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
@@ -127,6 +130,7 @@
                 android:layout_marginBottom="@dimen/_12dp"
                 android:text="@string/address_info"
                 android:textSize="@dimen/_18sp"
+                android:textStyle="bold"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
                 app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
@@ -187,6 +191,7 @@
                 android:layout_marginBottom="@dimen/_12dp"
                 android:text="@string/contact_info"
                 android:textSize="@dimen/_18sp"
+                android:textStyle="bold"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@id/left16dpBoundary"
                 app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
@@ -331,6 +336,8 @@
                 android:layout_marginBottom="@dimen/_24dp"
                 tools:text="Ленинский пр-кт, д. 199"
                 android:textSize="@dimen/_14sp"
+                android:clickable="true"
+                android:textColor="@color/blue"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@id/left16dpBoundary"
                 app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
@@ -343,6 +350,8 @@
                 android:layout_marginBottom="@dimen/_12dp"
                 tools:text="valera.sevostyanov@yandex.ru"
                 android:textSize="@dimen/_14sp"
+                android:clickable="true"
+                android:textColor="@color/blue"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@id/left16dpBoundary"
                 app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
@@ -355,6 +364,8 @@
                 android:layout_marginBottom="@dimen/_12dp"
                 tools:text="+7 81369 95613"
                 android:textSize="@dimen/_14sp"
+                android:clickable="true"
+                android:textColor="@color/blue"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@id/left16dpBoundary"
                 app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
@@ -367,6 +378,8 @@
                 android:layout_marginBottom="@dimen/_24dp"
                 tools:text="+7 929 032 66 99"
                 android:textSize="@dimen/_14sp"
+                android:clickable="true"
+                android:textColor="@color/blue"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@id/left16dpBoundary"
                 app:layout_constraintEnd_toEndOf="@id/right16dpBoundary"
@@ -389,5 +402,45 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/_32dp"
+        android:layout_height="@dimen/_32dp"
+        android:indeterminateTint="@color/blue"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/errorHolder"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/imageError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/png_error" />
+
+        <TextView
+            android:id="@+id/messageError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:gravity="center"
+            android:text="@string/database_error"
+            android:textSize="@dimen/_22sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

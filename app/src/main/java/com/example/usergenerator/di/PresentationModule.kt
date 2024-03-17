@@ -1,7 +1,5 @@
 package com.example.usergenerator.di
 
-import com.example.usergenerator.domain.usecase.GetUserDetailsByIdUseCase
-import com.example.usergenerator.domain.usecase.GetUserDetailsByIdUseCaseImpl
 import com.example.usergenerator.presentation.userdetails.UserDetailsViewModel
 import com.example.usergenerator.presentation.users.UsersViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -18,7 +16,10 @@ val presentationModule = module {
 
     viewModel<UserDetailsViewModel> {
         UserDetailsViewModel(
-            getUserDetailsByIdUseCase = get()
+            getUserDetailsByIdUseCase = get(),
+            openContactsAppUseCase = get(),
+            openEmailAppUseCase = get(),
+            openMapAppUseCase = get()
         )
     }
 }

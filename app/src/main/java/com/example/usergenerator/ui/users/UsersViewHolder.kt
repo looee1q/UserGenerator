@@ -13,6 +13,8 @@ class UsersViewHolder(private val binding: ItemUserBinding) : ViewHolder(binding
     fun bind(userBriefInfo: UserBriefInfo) {
         binding.fullName.text = userBriefInfo.getFullName()
         binding.address.text = userBriefInfo.getAddress()
+        binding.phone.text = binding.root
+            .resources.getString(R.string.mobile_phone).format(userBriefInfo.cellPhone)
         Glide.with(binding.root)
             .load(userBriefInfo.picture)
             .placeholder(R.drawable.user_mock)

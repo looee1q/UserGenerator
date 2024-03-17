@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -50,6 +51,31 @@ class UserDetailsFragment : Fragment() {
         binding.backButton.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        binding.phoneValue.setOnClickListener {
+            viewModel.openContactsApp(
+                (viewModel.stateLiveData.value as UserDetailsState.Content).data.phone
+            )
+        }
+
+        binding.cellPhoneValue.setOnClickListener {
+            viewModel.openContactsApp(
+                (viewModel.stateLiveData.value as UserDetailsState.Content).data.cellPhone
+            )
+        }
+
+        binding.emailValue.setOnClickListener {
+            viewModel.openEmailApp(
+                (viewModel.stateLiveData.value as UserDetailsState.Content).data.email
+            )
+        }
+
+        binding.addressValue.setOnClickListener {
+            viewModel.openMapApp(
+                latitude = (viewModel.stateLiveData.value as UserDetailsState.Content).data.locationLatitude,
+                longitude = (viewModel.stateLiveData.value as UserDetailsState.Content).data.locationLongitude
+            )
+        }
     }
 
     override fun onDestroyView() {
@@ -60,13 +86,17 @@ class UserDetailsFragment : Fragment() {
     private fun render(userDetailsState: UserDetailsState) {
         when(userDetailsState) {
             is UserDetailsState.Content -> renderContent(userDetailsState.data)
-            UserDetailsState.Error -> Log.d("UserDetailsFragment", "Показываю ошибку на экране деталей пользователя!!!")
-            UserDetailsState.Loading -> Log.d("UserDetailsFragment", "Показываю загрузку на экране деталей пользователя!!!")
+            UserDetailsState.Error -> renderError()
+            UserDetailsState.Loading -> renderLoading()
         }
     }
 
     private fun renderContent(userDetails: UserDetails) {
         with(binding) {
+            userPhoto.isVisible = true
+            scrollViewWithUserDetails.isVisible = true
+            progressBar.isVisible = false
+            errorHolder.isVisible = false
             Glide.with(this@UserDetailsFragment)
                 .load(userDetails.picture)
                 .placeholder(R.drawable.user_mock)
@@ -87,6 +117,20 @@ class UserDetailsFragment : Fragment() {
             phoneValue.text = userDetails.phone
             cellPhoneValue.text = userDetails.cellPhone
         }
+    }
+
+    private fun renderLoading() {
+        binding.userPhoto.isVisible = false
+        binding.scrollViewWithUserDetails.isVisible = false
+        binding.progressBar.isVisible = true
+        binding.errorHolder.isVisible = false
+    }
+
+    private fun renderError() {
+        binding.userPhoto.isVisible = false
+        binding.scrollViewWithUserDetails.isVisible = false
+        binding.progressBar.isVisible = false
+        binding.errorHolder.isVisible = true
     }
 
     companion object {

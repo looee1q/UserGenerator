@@ -9,5 +9,6 @@ data class UserBriefInfo(
     val city: String,
     val state: String,
     val country: String,
+    val cellPhone: String,
     val picture: String,
 )

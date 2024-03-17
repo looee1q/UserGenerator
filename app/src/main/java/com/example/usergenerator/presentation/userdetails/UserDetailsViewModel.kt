@@ -6,13 +6,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.usergenerator.domain.models.DatabaseResult
 import com.example.usergenerator.domain.usecase.GetUserDetailsByIdUseCase
+import com.example.usergenerator.domain.usecase.OpenContactsAppUseCase
+import com.example.usergenerator.domain.usecase.OpenEmailAppUseCase
+import com.example.usergenerator.domain.usecase.OpenMapAppUseCase
 import com.example.usergenerator.presentation.userdetails.state.UserDetailsState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class UserDetailsViewModel(
-    private val getUserDetailsByIdUseCase: GetUserDetailsByIdUseCase
+    private val getUserDetailsByIdUseCase: GetUserDetailsByIdUseCase,
+    private val openContactsAppUseCase: OpenContactsAppUseCase,
+    private val openEmailAppUseCase: OpenEmailAppUseCase,
+    private val openMapAppUseCase: OpenMapAppUseCase
 ) : ViewModel() {
 
     private val _stateLiveData = MutableLiveData<UserDetailsState>()
@@ -36,6 +42,18 @@ class UserDetailsViewModel(
                 }
             }
         }
+    }
+
+    fun openContactsApp(phone: String) {
+        openContactsAppUseCase(phone)
+    }
+
+    fun openEmailApp(email: String) {
+        openEmailAppUseCase(email)
+    }
+
+    fun openMapApp(latitude: String, longitude: String) {
+        openMapAppUseCase(latitude, longitude)
     }
 
 }

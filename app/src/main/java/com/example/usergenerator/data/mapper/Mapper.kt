@@ -41,6 +41,7 @@ class Mapper {
             city = userEntity.city,
             state = userEntity.state,
             country = userEntity.country,
+            cellPhone = userEntity.cellPhone,
             picture = userEntity.picture,
         )
     }
