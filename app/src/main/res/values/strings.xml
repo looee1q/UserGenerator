@@ -8,4 +8,24 @@
     <string name="upload_new_users">Получить пользователей</string>
     <string name="greetings">Добро пожаловать в Приложение!</string>
     <string name="user_details">Информация о пользователе</string>
+    <string name="full_name">%1$s %2$s</string>
+    <string name="address_in_short_form">%1$s, %2$s</string>
+    <string name="username">Username</string>
+    <string name="date_of_birthday">Год рождения</string>
+    <string name="age">Возраст</string>
+    <string name="nationality">Национальность</string>
+    <string name="gender">Пол</string>
+    <string name="address_info">Место жительства</string>
+    <string name="country">Страна</string>
+    <string name="region">Область</string>
+    <string name="city">Город</string>
+    <string name="address">Адрес</string>
+    <string name="contact_info">Контактная информация</string>
+    <string name="email">Email</string>
+    <string name="phone">Домашний телефон</string>
+    <string name="cell_phone">Мобильный телефон</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="male_sex">Мужской</string>
+    <string name="female_sex">Женский</string>
 </resources>

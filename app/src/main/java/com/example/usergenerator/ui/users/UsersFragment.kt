@@ -62,7 +62,7 @@ class UsersFragment : Fragment() {
 
     private fun render(state: State<List<UserBriefInfo>>) {
         when(state) {
-            is State.Content -> renderContent(state)
+            is State.Content -> renderContent(state.data)
             is State.ErrorNetwork -> renderErrorNetwork()
             is State.ErrorDatabase -> renderErrorDatabase()
             is State.Loading -> renderLoading()
@@ -71,11 +71,11 @@ class UsersFragment : Fragment() {
         }
     }
 
-    private fun renderContent(state: State<List<UserBriefInfo>>) {
+    private fun renderContent(users: List<UserBriefInfo>) {
         binding.usersRecyclerView.isVisible = true
         binding.errorHolder.isVisible = false
         binding.progressBar.isVisible = false
-        adapter.setUsersList((state as State.Content).data)
+        adapter.setUsersList(users)
     }
 
     private fun renderLoading() {

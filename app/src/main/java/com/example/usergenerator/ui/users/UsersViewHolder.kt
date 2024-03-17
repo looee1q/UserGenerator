@@ -5,6 +5,8 @@ import com.bumptech.glide.Glide
 import com.example.usergenerator.R
 import com.example.usergenerator.databinding.ItemUserBinding
 import com.example.usergenerator.domain.models.UserBriefInfo
+import com.example.usergenerator.util.getAddress
+import com.example.usergenerator.util.getFullName
 
 class UsersViewHolder(private val binding: ItemUserBinding) : ViewHolder(binding.root) {
 
