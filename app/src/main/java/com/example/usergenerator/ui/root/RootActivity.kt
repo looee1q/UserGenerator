@@ -7,9 +7,8 @@ import com.example.usergenerator.databinding.ActivityRootBinding
 class RootActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityRootBinding.inflate(layoutInflater).also {
+        ActivityRootBinding.inflate(layoutInflater).also {
             setContentView(it.root)
         }
-
     }
 }

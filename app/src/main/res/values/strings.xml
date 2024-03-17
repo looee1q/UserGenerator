@@ -6,6 +6,7 @@
     <string name="check_internet_connection">Проверьте соединение с сетью \nи попробуйте еще раз</string>
     <string name="clear_cache">Попробуйте очистить данные приложения</string>
     <string name="upload_new_users">Получить пользователей</string>
+    <string name="update_users">Обновить пользователей</string>
     <string name="greetings">Добро пожаловать в Приложение!</string>
     <string name="user_details">Информация о пользователе</string>
     <string name="address_in_short_form">%1$s, %2$s</string>

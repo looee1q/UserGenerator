@@ -1,16 +1,14 @@
 package com.example.usergenerator.presentation.users
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.usergenerator.domain.models.DatabaseResult
 import com.example.usergenerator.domain.models.SearchResult
-import com.example.usergenerator.domain.models.UserBriefInfo
 import com.example.usergenerator.domain.usecase.GetUsersFromDatabaseUseCase
 import com.example.usergenerator.domain.usecase.GetUsersFromNetworkUseCase
-import com.example.usergenerator.presentation.state.State
+import com.example.usergenerator.presentation.users.state.UsersState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
@@ -20,26 +18,30 @@ class UsersViewModel(
     private val getUsersFromDatabaseUseCase: GetUsersFromDatabaseUseCase
 ) : ViewModel() {
 
-    private val _stateLiveData = MutableLiveData<State<List<UserBriefInfo>>>(State.FirstStart())
-    val stateLiveData: LiveData<State<List<UserBriefInfo>>> get() = _stateLiveData
+    private val _stateLiveData = MutableLiveData<UsersState>(UsersState.FirstStart)
+    val stateLiveData: LiveData<UsersState> get() = _stateLiveData
 
     init {
         getUsersFromDatabase()
     }
 
     fun getUsersFromNetwork() {
-        _stateLiveData.postValue(State.Loading())
+        _stateLiveData.postValue(UsersState.Loading)
         viewModelScope.launch(Dispatchers.IO) {
-            getUsersFromNetworkUseCase().collect {
+            getUsersFromNetworkUseCase()
+                .catch {
+                    emit(SearchResult.ErrorDatabase)
+                }
+                .collect {
                 when (it) {
-                    SearchResult.NoInternet -> _stateLiveData.postValue(State.NoInternet())
-                    SearchResult.Error -> _stateLiveData.postValue(State.ErrorNetwork())
+                    SearchResult.NoInternet -> _stateLiveData.postValue(UsersState.NoInternet)
+                    SearchResult.ErrorNetwork -> _stateLiveData.postValue(UsersState.ErrorNetwork)
+                    SearchResult.ErrorDatabase -> _stateLiveData.postValue(UsersState.ErrorDatabase)
                     is SearchResult.Success -> {
                         if (it.data.isEmpty()) {
-                            _stateLiveData.postValue(State.ErrorNetwork())
+                            _stateLiveData.postValue(UsersState.ErrorNetwork)
                         } else {
-                            _stateLiveData.postValue(State.Content(it.data))
-                            Log.d("UsersViewModel", "Users2 are ${it.data.map { it.firstName + it.lastName }}}")
+                            _stateLiveData.postValue(UsersState.Content(it.data))
                         }
                     }
                 }
@@ -57,12 +59,12 @@ class UsersViewModel(
                 when (it) {
                     is DatabaseResult.Success -> {
                         if (it.data.isEmpty()) {
-                            _stateLiveData.postValue(State.FirstStart())
+                            _stateLiveData.postValue(UsersState.FirstStart)
                         } else {
-                            _stateLiveData.postValue(State.Content(it.data))
+                            _stateLiveData.postValue(UsersState.Content(it.data))
                         }
                     }
-                    is DatabaseResult.Error -> _stateLiveData.postValue(State.ErrorDatabase())
+                    is DatabaseResult.Error -> _stateLiveData.postValue(UsersState.ErrorDatabase)
                 }
             }
         }

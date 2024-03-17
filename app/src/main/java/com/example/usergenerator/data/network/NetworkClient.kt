@@ -2,7 +2,6 @@ package com.example.usergenerator.data.network
 
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import com.example.usergenerator.data.SearchResultData
 import kotlinx.coroutines.flow.Flow
 
 interface NetworkClient {

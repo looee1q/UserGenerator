@@ -1,4 +1,4 @@
-package com.example.usergenerator.data
+package com.example.usergenerator.data.network
 
 import com.example.usergenerator.data.database.UserEntity
 

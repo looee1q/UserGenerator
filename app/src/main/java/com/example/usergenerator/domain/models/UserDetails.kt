@@ -3,7 +3,6 @@ package com.example.usergenerator.domain.models
 data class UserDetails(
     val id: Int,
     val gender: String,
-    val title: String,
     val firstName: String,
     val lastName: String,
     val streetNumber: String,

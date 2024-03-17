@@ -7,7 +7,6 @@ import com.example.usergenerator.domain.models.UserDetails
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-
 fun UserDetails.getFullName() = "$firstName $lastName"
 
 fun UserBriefInfo.getFullName() = "$firstName $lastName"
@@ -22,12 +21,16 @@ fun convertDateOfBirthdayFormat(dateOfBirthdayFromApi: String): String {
 }
 
 fun convertGender(resources: Resources, gender: String): String {
-    return if (gender == resources.getString(R.string.male)) {
-        resources.getString(R.string.male_sex)
-    } else if (gender == resources.getString(R.string.female)){
-        resources.getString(R.string.female_sex)
-    } else {
-        ""
+    return when (gender) {
+        resources.getString(R.string.male) -> {
+            resources.getString(R.string.male_sex)
+        }
+        resources.getString(R.string.female) -> {
+            resources.getString(R.string.female_sex)
+        }
+        else -> {
+            ""
+        }
     }
 }
 

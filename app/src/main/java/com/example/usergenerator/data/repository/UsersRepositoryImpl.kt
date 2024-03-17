@@ -1,6 +1,6 @@
 package com.example.usergenerator.data.repository
 
-import com.example.usergenerator.data.SearchResultData
+import com.example.usergenerator.data.network.SearchResultData
 import com.example.usergenerator.data.database.AppDatabase
 import com.example.usergenerator.data.mapper.Mapper
 import com.example.usergenerator.data.network.NetworkClient
@@ -33,7 +33,7 @@ class UsersRepositoryImpl(
                     emit(SearchResult.Success(usersWithBriefInfo))
                 }
                 SearchResultData.Error -> {
-                    emit(SearchResult.Error)
+                    emit(SearchResult.ErrorNetwork)
                 }
                 SearchResultData.NoInternet -> {
                     emit(SearchResult.NoInternet)

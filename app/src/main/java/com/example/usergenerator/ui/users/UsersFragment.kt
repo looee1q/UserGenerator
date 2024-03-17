@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.usergenerator.R
 import com.example.usergenerator.databinding.FragmentUsersBinding
 import com.example.usergenerator.domain.models.UserBriefInfo
-import com.example.usergenerator.presentation.state.State
+import com.example.usergenerator.presentation.users.state.UsersState
 import com.example.usergenerator.presentation.users.UsersViewModel
 import com.example.usergenerator.ui.userdetails.UserDetailsFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -47,6 +47,7 @@ class UsersFragment : Fragment() {
         binding.usersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         binding.uploadUsersButton.setOnClickListener {
+            binding.usersRecyclerView.scrollToPosition(FIRST_ELEMENT_POSITION_IN_RECYCLER_VIEW)
             viewModel.getUsersFromNetwork()
         }
 
@@ -60,14 +61,14 @@ class UsersFragment : Fragment() {
         _binding = null
     }
 
-    private fun render(state: State<List<UserBriefInfo>>) {
-        when(state) {
-            is State.Content -> renderContent(state.data)
-            is State.ErrorNetwork -> renderErrorNetwork()
-            is State.ErrorDatabase -> renderErrorDatabase()
-            is State.Loading -> renderLoading()
-            is State.NoInternet -> renderNoInternet()
-            is State.FirstStart -> renderEmpty()
+    private fun render(state: UsersState) {
+        when (state) {
+            is UsersState.Content -> renderContent(state.data)
+            UsersState.ErrorNetwork -> renderErrorNetwork()
+            UsersState.ErrorDatabase -> renderErrorDatabase()
+            UsersState.Loading -> renderLoading()
+            UsersState.NoInternet -> renderNoInternet()
+            UsersState.FirstStart -> renderEmpty()
         }
     }
 
@@ -76,6 +77,7 @@ class UsersFragment : Fragment() {
         binding.errorHolder.isVisible = false
         binding.progressBar.isVisible = false
         adapter.setUsersList(users)
+        binding.uploadUsersButton.text = resources.getString(R.string.update_users)
     }
 
     private fun renderLoading() {
@@ -120,5 +122,10 @@ class UsersFragment : Fragment() {
         binding.messageError.text = resources.getString(R.string.no_internet)
         binding.messageErrorAnnotation.isVisible = true
         binding.messageErrorAnnotation.text = resources.getString(R.string.check_internet_connection)
+        binding.uploadUsersButton.text = resources.getString(R.string.upload_new_users)
+    }
+
+    companion object {
+        private const val FIRST_ELEMENT_POSITION_IN_RECYCLER_VIEW = 0
     }
 }

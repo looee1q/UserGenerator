@@ -10,7 +10,6 @@ class Mapper {
     fun fromUserDtoToUserEntity(userDto: UserDto): UserEntity {
         return UserEntity(
             gender = userDto.gender,
-            title = userDto.name.title,
             firstName = userDto.name.first,
             lastName = userDto.name.last,
             streetNumber = userDto.location.street.number,
@@ -50,7 +49,6 @@ class Mapper {
         return UserDetails(
             id = userEntity.id,
             gender = userEntity.gender,
-            title = userEntity.title,
             firstName = userEntity.firstName,
             lastName = userEntity.lastName,
             streetNumber = userEntity.streetNumber,

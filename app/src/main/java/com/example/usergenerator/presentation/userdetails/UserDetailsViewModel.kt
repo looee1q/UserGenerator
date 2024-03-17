@@ -55,5 +55,4 @@ class UserDetailsViewModel(
     fun openMapApp(latitude: String, longitude: String) {
         openMapAppUseCase(latitude, longitude)
     }
-
 }

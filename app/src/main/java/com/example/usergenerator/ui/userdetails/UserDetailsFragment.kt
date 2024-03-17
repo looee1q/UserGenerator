@@ -1,7 +1,6 @@
 package com.example.usergenerator.ui.userdetails
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -84,7 +83,7 @@ class UserDetailsFragment : Fragment() {
     }
 
     private fun render(userDetailsState: UserDetailsState) {
-        when(userDetailsState) {
+        when (userDetailsState) {
             is UserDetailsState.Content -> renderContent(userDetailsState.data)
             UserDetailsState.Error -> renderError()
             UserDetailsState.Loading -> renderLoading()
@@ -137,7 +136,7 @@ class UserDetailsFragment : Fragment() {
 
         private const val USER_ID = "USER_ID"
 
-        fun createArgs(userId: Int) : Bundle {
+        fun createArgs(userId: Int): Bundle {
             return bundleOf(USER_ID to userId)
         }
     }

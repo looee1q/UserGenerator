@@ -1,10 +1,7 @@
 package com.example.usergenerator.data.network
 
 import android.net.ConnectivityManager
-import android.util.Log
-import com.example.usergenerator.data.SearchResultData
 import com.example.usergenerator.data.mapper.Mapper
-import com.example.usergenerator.data.repository.UsersRepositoryImpl
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Retrofit
@@ -35,7 +32,6 @@ class RetrofitClient(
                 val users = response.body()?.results?.map {
                     mapper.fromUserDtoToUserEntity(it)
                 }.orEmpty()
-                Log.d("RetrofitClient", "Users1 ${users.map { it.firstName + it.lastName }}")
                 emit(SearchResultData.Success(users))
             } else {
                 emit(SearchResultData.Error)

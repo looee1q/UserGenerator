@@ -4,7 +4,9 @@ sealed interface SearchResult {
 
     data class Success(val data: List<UserBriefInfo>) : SearchResult
 
-    data object Error : SearchResult
+    data object ErrorNetwork : SearchResult
+
+    data object ErrorDatabase : SearchResult
 
     data object NoInternet : SearchResult
 }
